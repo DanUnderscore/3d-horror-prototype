@@ -1,14 +1,7 @@
-# 3d-horror-prototype
+# INFO
 this project started on December 6, 2023, at approximately 9 PM PHT (Philippine Standard Time)
 
-a 3d horror game
-collabed iwth rav idk his github account right now but yeshes the assets guy he makes assets and helps coding too
+a 3d horror prototype
+collabed with RavDaBest
 
-## YES
-yes
-
-## NO
-no
-
-## OK
-ok
+status: unfinished.
