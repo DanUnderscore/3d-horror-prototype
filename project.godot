@@ -8,9 +8,20 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Node",
+"class": "Textures",
+"language": "GDScript",
+"path": "res://src/class/Textures.gd"
+} ]
+_global_script_class_icons={
+"Textures": ""
+}
+
 [application]
 
 config/name="3d-horror-prototype"
+run/main_scene="res://scenes/debug.tscn"
 config/icon="res://icon.png"
 
 [gui]
