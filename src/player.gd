@@ -12,7 +12,7 @@ var pitch_input := 0.0
 var velocity = Vector3()
 
 # constants
-const BASE_WALKSPEED = 50
+const BASE_WALKSPEED = 100
 const BASE_JUMPPOWER = 45
 const GRAVITY = -15
 
@@ -33,7 +33,7 @@ func _physics_process(_delta) -> void:
 		velocity.z = 0
 	
 	velocity.y += GRAVITY
-	velocity = move_and_slide(velocity, Vector3.UP)
+	velocity = move_and_slide(velocity, Vector3.UP, true)
 	
 	pitch_pivot.rotation.x = clamp(pitch_pivot.rotation.x, -1, 1)
 
