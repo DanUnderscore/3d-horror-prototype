@@ -8,7 +8,7 @@
 
 [sub_resource type="SpatialMaterial" id=3]
 albedo_texture = ExtResource( 1 )
-uv1_scale = Vector3( 30, 30, 30 )
+uv1_scale = Vector3( 15, 15, 1 )
 
 [node name="box_static" type="StaticBody"]
 

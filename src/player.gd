@@ -12,9 +12,9 @@ var pitch_input := 0.0
 var velocity = Vector3()
 
 # constants
-const BASE_WALKSPEED = 100
+const BASE_WALKSPEED = 30
 const BASE_JUMPPOWER = 45
-const GRAVITY = -15
+const GRAVITY = -30
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -24,15 +24,19 @@ func _physics_process(_delta) -> void:
 	var input_dir := Input.get_vector("movement_left","movement_right","movement_forward","movement_backward")
 	var direction = (twist_pivot.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
-	if direction:
-		velocity.x = direction.x * BASE_WALKSPEED
-		velocity.z = direction.z * BASE_WALKSPEED
-		
+	if is_on_floor():
+		if direction:
+			velocity.x = direction.x * BASE_WALKSPEED
+			velocity.z = direction.z * BASE_WALKSPEED
+			
+		else:
+			velocity.x = 0
+			velocity.z = 0
+			
 	else:
-		velocity.x = 0
-		velocity.z = 0
+		velocity.y = GRAVITY
+		
 	
-	velocity.y += GRAVITY
 	velocity = move_and_slide(velocity, Vector3.UP, true)
 	
 	pitch_pivot.rotation.x = clamp(pitch_pivot.rotation.x, -1, 1)
