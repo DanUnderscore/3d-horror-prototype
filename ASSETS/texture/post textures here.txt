@@ -1,5 +1,1 @@
-<<<<<<< HEAD
 self explanatoreasdfghj
-=======
-self explanatoreasdfghj
->>>>>>> bff6e65cd8ade88cddfb5f114f79dd08e1b43a61
