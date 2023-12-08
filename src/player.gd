@@ -3,7 +3,7 @@ extends KinematicBody
 onready var twist_pivot = $TwistPivot
 onready var pitch_pivot = $TwistPivot/PitchPivot
 
-var mouse_sensitivity := 0.001
+var mouse_sensitivity := 0.002
 var twist_input := 0.0
 var pitch_input := 0.0
 
@@ -12,7 +12,7 @@ var pitch_input := 0.0
 var velocity = Vector3()
 
 # constants
-const BASE_WALKSPEED = 5
+const BASE_WALKSPEED = 50
 const BASE_JUMPPOWER = 45
 const GRAVITY = -15
 
@@ -20,7 +20,7 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 # controller
-func _physics_process(delta) -> void:
+func _physics_process(_delta) -> void:
 	var input_dir := Input.get_vector("movement_left","movement_right","movement_forward","movement_backward")
 	var direction = (twist_pivot.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
@@ -32,6 +32,7 @@ func _physics_process(delta) -> void:
 		velocity.x = 0
 		velocity.z = 0
 	
+	velocity.y += GRAVITY
 	velocity = move_and_slide(velocity, Vector3.UP)
 	
 	pitch_pivot.rotation.x = clamp(pitch_pivot.rotation.x, -1, 1)
