@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/player.gd" type="Script" id=1]
 
@@ -6,22 +6,37 @@
 
 [sub_resource type="CapsuleMesh" id=2]
 
+[sub_resource type="SpatialMaterial" id=3]
+
 [node name="player" type="KinematicBody"]
 script = ExtResource( 1 )
 
-[node name="CollisionShape" type="CollisionShape" parent="."]
+[node name="collision" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
 shape = SubResource( 1 )
 
+<<<<<<< Updated upstream
 [node name="MeshInstance" type="MeshInstance" parent="CollisionShape"]
 mesh = SubResource( 2 )
+=======
+[node name="mesh" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+mesh = SubResource( 2 )
+skeleton = NodePath("../collision")
+material/0 = SubResource( 3 )
+>>>>>>> Stashed changes
 
-[node name="TwistPivot" type="Spatial" parent="."]
+[node name="twistpivot" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 
-[node name="PitchPivot" type="Spatial" parent="TwistPivot"]
+[node name="pitchpivot" type="Spatial" parent="twistpivot"]
 transform = Transform( 1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 0, 0 )
 
+<<<<<<< Updated upstream
 [node name="Camera" type="Camera" parent="TwistPivot/PitchPivot"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3 )
+=======
+[node name="camera" type="Camera" parent="twistpivot/pitchpivot"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4 )
+>>>>>>> Stashed changes
 current = true
