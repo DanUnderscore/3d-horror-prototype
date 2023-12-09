@@ -1,0 +1,19 @@
+# Version nfy.1:
+
+nfy standing for "not fully finished"
+
+this isnt the firstest version, but rather, the first version that has been documented with this
+text file.
+
+##### added an inventory system. 
+  as in, an array where strings get appended to
+
+##### added a "key" and a "door" system.
+      When you are within the key's player checker, it appends its name to the playerinv 
+      Then it queues delete itself. Then, there's the door, where if you are within its
+      player checker, it looks for a key corresponding to the doors name. If it finds it,
+      it erases that key from playerinv (to give the effect that you have used it), Then the
+      door queue deletes itself so it "opens"
+
+##### player able to sprint
+      yay sprinting lets go

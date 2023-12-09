@@ -4,10 +4,11 @@
 
 [sub_resource type="CubeMesh" id=2]
 
-[node name="Box" type="RigidBody"]
+[node name="box_rigid" type="RigidBody"]
 
-[node name="CollisionShape" type="CollisionShape" parent="."]
+[node name="collision" type="CollisionShape" parent="."]
 shape = SubResource( 1 )
 
-[node name="MeshInstance" type="MeshInstance" parent="CollisionShape"]
+[node name="mesh" type="MeshInstance" parent="."]
 mesh = SubResource( 2 )
+skeleton = NodePath("../collision")

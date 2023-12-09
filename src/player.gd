@@ -12,9 +12,13 @@ var pitch_input := 0.0
 var velocity = Vector3()
 
 # constants
-const BASE_WALKSPEED = 30
+const BASE_WALKSPEED = 10
 const BASE_JUMPPOWER = 45
 const GRAVITY = -30
+var speed_multiplier = 3
+
+# states
+var isSprinting = false
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -26,9 +30,9 @@ func _physics_process(_delta) -> void:
 	
 	if is_on_floor():
 		if direction:
-			velocity.x = direction.x * BASE_WALKSPEED
-			velocity.z = direction.z * BASE_WALKSPEED
-			
+			velocity.x = direction.x * BASE_WALKSPEED * speed_multiplier
+			velocity.z = direction.z * BASE_WALKSPEED * speed_multiplier
+				
 		else:
 			velocity.x = 0
 			velocity.z = 0
@@ -40,6 +44,20 @@ func _physics_process(_delta) -> void:
 	velocity = move_and_slide(velocity, Vector3.UP, true)
 	
 	pitch_pivot.rotation.x = clamp(pitch_pivot.rotation.x, -1, 1)
+	
+	if Input.is_action_pressed("movement_sprint"):
+		isSprinting = true
+		
+	else:
+		isSprinting = false
+		
+	
+	if isSprinting:
+		speed_multiplier = 3
+		
+	else:
+		speed_multiplier = 1
+		
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
