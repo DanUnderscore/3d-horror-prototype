@@ -28,4 +28,12 @@ material/0 = SubResource( 3 )
 [node name="collision" type="CollisionShape" parent="player_checker"]
 shape = SubResource( 4 )
 
+[node name="label" type="Label3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1 )
+pixel_size = 0.032
+billboard = 1
+double_sided = false
+no_depth_test = true
+text = "default"
+
 [connection signal="body_entered" from="player_checker" to="." method="_on_player_checker_body_entered"]

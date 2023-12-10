@@ -1,3 +1,3 @@
 extends Spatial
 
-onready var target = $navmesh/entities/characters/player
+onready var target = $entities/characters/player

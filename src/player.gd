@@ -1,7 +1,9 @@
 extends KinematicBody
 
-onready var twist_pivot = $TwistPivot
-onready var pitch_pivot = $TwistPivot/PitchPivot
+onready var twist_pivot = $twistpivot
+onready var pitch_pivot = $twistpivot/pitchpivot
+onready var cdtimer = $cdtimer
+onready var staminameter = $UI/staminameter
 
 var mouse_sensitivity := 0.002
 var twist_input := 0.0
@@ -14,11 +16,14 @@ var velocity = Vector3()
 # constants
 const BASE_WALKSPEED = 10
 const BASE_JUMPPOWER = 45
+const MAX_STAMINA = 500
 const GRAVITY = -30
 var speed_multiplier = 3
+var stamina: float = 500
 
 # states
 var isSprinting = false
+var isSprintEnabled = true
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -45,7 +50,9 @@ func _physics_process(_delta) -> void:
 	
 	pitch_pivot.rotation.x = clamp(pitch_pivot.rotation.x, -1, 1)
 	
-	if Input.is_action_pressed("movement_sprint"):
+	staminameter.text = str(int(stamina), "/", MAX_STAMINA)
+	
+	if Input.is_action_pressed("movement_sprint") and stamina > 0:
 		isSprinting = true
 		
 	else:
@@ -54,10 +61,23 @@ func _physics_process(_delta) -> void:
 	
 	if isSprinting:
 		speed_multiplier = 3
+		stamina -= 1
+		if stamina < 0:
+			isSprintEnabled = false
+			stamina = 0
+			cdtimer.start()
+			print("cooldowning")
 		
 	else:
 		speed_multiplier = 1
-		
+		if stamina < MAX_STAMINA and isSprintEnabled:
+			stamina += .5
+			
+func _on_cdtimer_timeout():
+	stamina = MAX_STAMINA
+	isSprintEnabled = true
+	cdtimer.stop()
+	print("cooldowned")
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
