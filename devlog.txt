@@ -33,3 +33,7 @@ text file.
 ##### added a 'fog' effect
       its not visible in the editor though. You have to add a worldenvironment node and
       then use the 'debug_env.tres' resource
+
+# Version nfy.3:
+
+##### polished scripts. thats it for now
