@@ -23,9 +23,9 @@ text file.
 ##### player's ability to sprint has a stamina limit
       when the player is dumb and consumes all of their stamina, their stamina
       will not regen for 5 seconds. In this version though, after the 5 seconds,
-      the stamina is instantly regened. I will uhh fix that in the next version.
+      the stamina is instantly regened. I will uhh fix that in the next version. (i didnt)
       nothing to worry about when you ran out of stamina because the enemy is sluggish to
-      compensate for the sprinting limit
+      compensate for the sprinting limit (thsi ruins the purpose of resource management??)
 
 ##### keys and doors now used in the 'debug' map
       there are also 'billboard' labels on top of the doors/keys
@@ -37,3 +37,13 @@ text file.
 # Version nfy.3:
 
 ##### polished scripts. thats it for now
+
+# Version nfy.4:
+
+##### weapon with two bullet types too lazy to add description its self explanatory anyway
+
+##### you have to click on keys/doors now to interact with them
+      unlike before where you can just touch them and they do something
+
+##### added buttons
+      buttons that unlock doors just like keys. a fine addition to the door/key system

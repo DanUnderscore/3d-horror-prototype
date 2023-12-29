@@ -1,7 +1,7 @@
 extends Control
 
 func _ready():
-	$playername.text = 'player: ' + get_parent().name
+	$playername.text = 'player: stamina'
 
 func _process(_delta):
 	var stamina = get_parent().stamina

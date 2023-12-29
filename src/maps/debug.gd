@@ -1,4 +1,6 @@
 extends Spatial
 
-# put in every map so the AI's pathfinding can set a target
 onready var target = $entities/characters/player
+
+func _ready():
+	get_tree().call_group("enemies", "target_given", target)

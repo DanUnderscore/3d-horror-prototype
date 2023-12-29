@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://src/objects/bullet_basic.gd" type="Script" id=1]
+
+[sub_resource type="CapsuleShape" id=4]
+
+[sub_resource type="CapsuleMesh" id=5]
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 1, 0.917647, 0.243137, 1 )
+
+[sub_resource type="BoxShape" id=1]
+
+[node name="basic" type="KinematicBody"]
+collision_layer = 16
+collision_mask = 4
+script = ExtResource( 1 )
+
+[node name="collision" type="CollisionShape" parent="."]
+transform = Transform( 0.2, 0, 0, 0, -2.09378e-09, 0.111283, 0, -0.9405, -9.55094e-08, 0, 0, -1 )
+shape = SubResource( 4 )
+disabled = true
+
+[node name="mesh" type="MeshInstance" parent="."]
+transform = Transform( 0.2, 0, 0, 0, -2.09378e-09, 0.111283, 0, -0.9405, -9.55094e-08, 0, 0, -1 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 3 )
+
+[node name="collided_checker" type="Area" parent="."]
+collision_layer = 16
+collision_mask = 46
+
+[node name="collision" type="CollisionShape" parent="collided_checker"]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
+shape = SubResource( 1 )
+
+[node name="lifetime" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="body_entered" from="collided_checker" to="." method="_on_collided_checker_body_entered"]
+[connection signal="timeout" from="lifetime" to="." method="_on_lifetime_timeout"]

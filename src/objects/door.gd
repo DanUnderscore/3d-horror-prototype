@@ -1,9 +1,9 @@
 extends StaticBody
 
-export var doorname = "default"
+export var door_name = "default"
 export var isADoor = true
 
-onready var itemname = str(doorname, "door")
+onready var item_name = str(door_name, "door")
 onready var newmaterial = $mesh.get_surface_material(0)
 
 func _ready():
@@ -18,13 +18,9 @@ func _ready():
 		
 		$collision.disabled = true
 
-func _on_player_checker_body_entered(body):
-	if body.name == "player": # if the body that comes into contact is player
-		
-		print("contacted with ", itemname)
-		
-		if str(doorname, 'key') in body.inventory.items:
-			body.inventory.items.erase(str(doorname, "key")) # it removes that key from player inventory because you're done using it and to make space for the inventory for new keys
+func unlock(body):
+		if str(door_name, 'key') in body.inventory.items:
+			body.inventory.items.erase(str(door_name, "key")) # it removes that key from player inventory because you're done using it and to make space for the inventory for new keys
 			
 			if isADoor:  # if is a door and "unlocked" then it gets "opened" or in this case, deleted
 				queue_free()
